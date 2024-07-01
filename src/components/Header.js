@@ -12,8 +12,8 @@ const Header = () => {
     // }
     return (
         <header className="navbar">
-            <Link to="/" style={{ textDecoration: 'none' }}>
-                <h1>Adankaa</h1>
+            <Link to="/" style={{ textDecoration: 'none', paddingLeft: '20px'}}>
+                <h1>ROMO Kit</h1>
             </Link>
 
             <ul className="nav nav-tabs tabs">

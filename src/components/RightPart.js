@@ -9,7 +9,6 @@ function RightPart() {
         }
     };
 
-
     return (
         <div className="right-containner">
             <div className="printing">
@@ -19,9 +18,8 @@ function RightPart() {
             <div>
                 <Card
                     name="Part 1"
-                    image="Images/RRR Spatial - 1 (80,100)/Link 2 (100mm).png"
+                    image="Images/RRR Spatial - 1 (80,100)/Link 1 (80mm).png"
                     details="Details for Part 1"
-                    
                 />
                 <Card
                     name="Part 2"
@@ -30,7 +28,7 @@ function RightPart() {
                 />
                 <Card
                     name="Part 3"
-                    image="Images/Link_3.STL"
+                    image="Images/RRR Spatial - 1 (80,100)/Link 3.png"
                     details="Details for Part 3"
                 />
                 {/* <Card

@@ -58,7 +58,7 @@ footer p {
 
 .bottom-containner {
     width: 100%;
-    height: 34vh;
+    height: 29vh;
     background-color: #FFE9D2;
     display: flex;
     flex-direction: row;
@@ -132,33 +132,6 @@ footer p {
     border-bottom: 2px solid #333;
     position: relative;
     /* Added to position the preview card relative to this container */
-}
-
-.preview-card {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    text-align: center;
-    position: absolute;
-    left: -220px;
-    /* Adjust this value to position the preview card to the left */
-    width: 200px;
-    top: 0;
-    /* This will be dynamically adjusted */
-}
-
-.preview-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-.preview-card p {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
 }
 
 /* Responsive styling */

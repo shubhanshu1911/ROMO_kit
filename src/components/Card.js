@@ -11,21 +11,35 @@ function Card(props) {
         <div className="parts">
             <h3>{props.name}</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0px' }}>
-                <button
-                    type="button"
-                    className="btn btn-light btn-lg col-5"
-                    onClick={props.onPreviewClick}
-                >
+                {/* <!-- Button trigger modal --> */}
+                <button type="button" class="btn btn-light btn-lg col-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Preview
                 </button>
+
+                {/* <!-- Modal --> */}
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">{props.name}</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src={props.image} alt={props.name} width="60" height="60" className="d-inline-block align-text-center" />
+                                <p>{props.details}</p>
+                            </div>
+                            {/* <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div> */}
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <button type="button" className="btn btn-light btn-lg col-5" onClick={handleExportClick}>Print</button>
             </div>
-            {props.isActive && (
-                <div className="preview-card">
-                    <img src={props.image} alt={props.name} style={{ width: '100%', borderRadius: '8px' }} />
-                    <p>{props.details}</p>
-                </div>
-            )}
         </div>
     );
 }

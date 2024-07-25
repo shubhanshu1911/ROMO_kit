@@ -9,8 +9,14 @@ function LeftPart() {
     const [isConfirmed, setIsConfirmed] = useState(false);
 
     const images = {
-        "RRR (Spital)": "Images/RRR Spatial - 1 (80,100)/RRR Spatial Assembly (80,100).png", // Update the path to your images
-        "SCARA": "path/to/scara_image.jpg" // Update the path to your images
+        "RRR (Spital)_80_100": "Images/RRR Spatial - 1 (80,100)/RRR Spatial Assembly (80,100).png",
+        "RRR (Spital)_80_150": "Images/RRR Spatial - 1 (80,150)/RRR Spatial Assembly (80,150).png",
+        "RRR (Spital)_100_100": "Images/RRR Spatial - 1 (100,100)/RRR Spatial Assembly (100,100).png",
+        "RRR (Spital)_100_150": "Images/RRR Spatial - 1 (100,150)/RRR Spatial Assembly (100,150).png",
+        "SCARA_80_100": "path/to/scara_image_80_100.jpg",
+        "SCARA_80_150": "path/to/scara_image_80_150.jpg",
+        "SCARA_100_100": "path/to/scara_image_100_100.jpg",
+        "SCARA_100_150": "path/to/scara_image_100_150.jpg",
     };
 
     function handleRobotClick(event, robotName) {
@@ -33,13 +39,16 @@ function LeftPart() {
         console.log('OK button clicked, selections saved:', { selectedRobot, partMeasurements });
     }
 
+    // Construct the key based on selectedRobot and part measurements
+    const imageKey = `${selectedRobot}_${partMeasurements[1]}_${partMeasurements[2]}`;
+
     return (
         <div className="left-containner">
 
             <div className="up-containner">
                 {/* Conditionally render the selected image */}
-                {isConfirmed && images[selectedRobot] && (
-                    <img src={images[selectedRobot]} alt={selectedRobot} style={{ width: '80%', height: '350px', marginTop : '8%' , paddingLeft: '200px'}} />
+                {isConfirmed && images[imageKey] && (
+                    <img src={images[imageKey]} alt={selectedRobot} style={{ width: '80%', height: '350px', marginTop: '8%', paddingLeft: '200px' }} />
                 )}
             </div>
 

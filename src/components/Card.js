@@ -1,9 +1,22 @@
 import React from "react";
 
 function Card(props) {
-    const handleExportClick = () => {
+    const handleExportClick = (filePath) => {
         if (window.confirm("This site is trying to open your application. Do you want to proceed?")) {
-            window.location.href = "Print-Rite CoLiDo Repetier-Host://open";
+            fetch(`http://localhost:5000/launch-cura?filePath=${encodeURIComponent(filePath)}`)
+                .then(response => {
+                    return response.text().then(text => {
+                        if (response.status === 404 || text.includes('Cura not found')) {
+                            alert("Software not found, please download Ultimaker Cura first.");
+                        } else if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        console.log(text); // "Cura launched with file"
+                    });
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
         }
     };
 
@@ -12,8 +25,8 @@ function Card(props) {
     return (
         <div className="parts">
             <h3>{props.name}</h3>
-    
-            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0px'}}>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '8px 0px' }}>
                 {/* Button trigger modal */}
                 <button type="button" className="btn btn-light btn-lg col-5" data-bs-toggle="modal" data-bs-target={`#${modalId}`} style={{ border: '1px solid black' }}>
                     Preview
@@ -31,15 +44,11 @@ function Card(props) {
                                 <img src={props.image} alt={props.name} width="100%" height="400px" className="d-inline-block align-text-center" />
                                 <p>{props.details}</p>
                             </div>
-                            {/* <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button>
-                            </div> */}
                         </div>
                     </div>
                 </div>
 
-                <button type="button" className="btn btn-light btn-lg col-5" onClick={handleExportClick} style={{ border: '1px solid black' }}>Print</button>
+                <button type="button" className="btn btn-light btn-lg col-5" onClick={() => handleExportClick(props.filePath)} style={{ border: '1px solid black' }}>Print</button>
             </div>
         </div>
     );

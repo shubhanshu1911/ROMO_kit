@@ -5,14 +5,15 @@ function Card(props) {
         if (window.confirm("This site is trying to open your application. Do you want to proceed?")) {
             fetch(`http://localhost:5000/launch-cura?filePath=${encodeURIComponent(filePath)}`)
                 .then(response => {
-                    return response.text().then(text => {
-                        if (response.status === 404 || text.includes('Cura not found')) {
-                            alert("Software not found, please download Ultimaker Cura first.");
-                        } else if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        console.log(text); // "Cura launched with file"
-                    });
+                    if (response.status === 404) {
+                        alert("File not found! Please first download the Ultimaker cura software");
+                    } else if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log(data); // "Cura launched with file"
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
